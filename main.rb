@@ -35,5 +35,8 @@ pull = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
 croupier_hand = [pull[rand(12)]]
 player_hand = [pull[rand(12)], pull[rand(12)]]
 croupier_score, player_score = check(croupier_hand, player_hand).split()
-puts [croupier_hand, player_hand].join(' ')
-puts [croupier_score, player_score].join(' ')
+if player_score==21
+  puts "You win!"
+  exit
+end
+  puts "Your hand: #{player_hand.join(' ')} (#{player_score})\nIf you want to continue, enter 1, else nothing"
