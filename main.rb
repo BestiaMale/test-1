@@ -1,42 +1,42 @@
-def check(chand,phand)
-  csum = psum = 0
-  chand.each { |x|
+def count(hand)
+  sum = 0
+  hand.each { |x|
     case x
     when 'J'
-      csum += 2
+      sum += 2
     when 'Q'
-      csum += 3
+      sum += 3
     when 'K'
-      csum += 4
+      sum += 4
     when 'A'
-      csum += csum>10 ? 1 : 11
+      sum += sum>10 ? 1 : 11
     else
-      csum += x
+      sum += x
     end
     }
-  phand.each { |x|
-    case x
-    when 'J'
-      psum += 2
-    when 'Q'
-      psum += 3
-    when 'K'
-      psum += 4
-    when 'A'
-      psum += psum>10 ? 1 : 11
-    else
-      psum += x
-    end
-    }
-  ans = "#{csum} #{psum}"
-  return ans
+    return sum
 end
 pull = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
-croupier_hand = [pull[rand(12)]]
-player_hand = [pull[rand(12)], pull[rand(12)]]
-croupier_score, player_score = check(croupier_hand, player_hand).split()
-if player_score==21
+croupier = [pull[rand(12)]]
+player = [pull[rand(12)], pull[rand(12)]]
+if count(player)==21
   puts "You win!"
   exit
 end
-  puts "Your hand: #{player_hand.join(' ')} (#{player_score})\nIf you want to continue, enter 1, else nothing"
+  puts "Your hand: #{player.join(' ')} (#{count(player)})\nIf you want to continue, enter 1, else nothing"
+loop{
+  a = gets.to_i
+  if a == 1
+    player.push(pull[rand(12)])
+    if count(player) == 21
+      puts "BlackJack!"
+      exit
+    elsif count(player) > 21
+      puts "Overdraft!"
+      exit
+    else
+      puts "Your hand: #{player.join(' ')} (#{count(player)})\nIf you want to continue, enter 1, else nothing"
+    end
+  end
+}
+gets
