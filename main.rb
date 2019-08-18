@@ -26,7 +26,7 @@ if gets.to_i != 1
 end
 croupier = [pull[rand(12)]]
 player = [pull[rand(12)], pull[rand(12)]]
-if count(player)==21
+if count(player) == 21
   puts "Your hand: #{player.join(' ')} (#{count(player)})\nYou win!"
   STDIN.getc
   break
@@ -37,10 +37,12 @@ loop{
   if a == 1
     player.push(pull[rand(12)])
     if count(player) == 21
+      puts "Your hand: #{player.join(' ')} (#{count(player)})"
       puts "BlackJack! You win!"
       STDIN.getc
       break
     elsif count(player) > 21
+      puts "Your hand: #{player.join(' ')} (#{count(player)})"
       puts "Overdraft! You lose!"
       STDIN.getc
       break
